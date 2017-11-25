@@ -17,6 +17,6 @@ class TopController < ApplicationController
         }
       }
     end
-
+    render json: 2
   end
 end
