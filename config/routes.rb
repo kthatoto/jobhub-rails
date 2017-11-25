@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'top#check'
+  root 'application#check'
   get 'dashboard', to: 'top#dashboard'
   get 'mypage', to: 'top#mypage'
 

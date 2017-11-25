@@ -1,8 +1,5 @@
 class TopController < ApplicationController
 
-  def check
-    render json: 1
-  end
 
   def dashboard
     @issues = []
@@ -17,6 +14,6 @@ class TopController < ApplicationController
         }
       }
     end
-    render json: {}
+    render json: @user
   end
 end

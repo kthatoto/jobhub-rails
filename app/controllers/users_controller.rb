@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_action :authenticate, only: [:create]
+
   def create
     uri = URI.parse("https://api.github.com/user?access_token=#{params[:github_access_token]}")
     require 'net/http'
