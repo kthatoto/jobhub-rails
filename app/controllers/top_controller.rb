@@ -14,6 +14,13 @@ class TopController < ApplicationController
         }
       }
     end
-    render json: @user
+    render json: {
+      user: {
+        name: @user.name,
+        detail: @user.detail
+      },
+      issues: @issues,
+      skills: Skill.all
+    }
   end
 end

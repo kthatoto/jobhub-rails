@@ -1,24 +1,123 @@
-# README
+# APIs
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 共通
+メソッドの指定がなければ`GET`
 
-Things you may want to cover:
+ユーザー登録以外のリクエストには、ヘッダーに
+```
+Authorization: <access_token>
+```
+が必須
+### response
+```
+{
+  "user": {
+    "name": "takahashi",
+    "detail": "自己紹介...",
+  }
+}
+```
+## ユーザー登録 /users
+### method
+- `post`
+### parameters
+```
+{
+  github_access_token: "asdfasdfasdf..."
+}
+```
+### response
+```
+{
+  message: "created",
+  access_token: "qwerqwerqwer..."
+}
+```
 
-* Ruby version
+## /dashboard
+### parameters
+なし
 
-* System dependencies
+### reqponse
+```
+{
+  "user": {
+    "name": "takahashi",
+    "detail": "自己紹介..."
+  },
+  "issues": [
+    {
+      "id": 1,
+      "title": "Ruby help!",
+      "price": 1000,
+      "user": {
+        "id": 1,
+        "name": "takahashi",
+      },
+    },
+    ...
+  ],
+  "skills": [
+    "Ruby",
+    "PHP",
+    ...
+  ],
+}
+```
 
-* Configuration
+## /mypage
+### parameters
+なし
 
-* Database creation
+### response
+```
+{
+  "user": {
+    "name": "takahashi",
+    "id": 1,
+  },
+  "challenges": [
+    {
+      "status": "challenging",
+      "issue_id": 2,
+      "detail": "頑張りました",
+      "pull_request_url": "https://github.com/takahashi/test-repo/pull/2",
+    },
+    ...
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Ruby help!",
+      "price": 1000,
+      "status": "open",
+    },
+    ...
+  ],
+}
+```
 
-* Database initialization
+## /issues/:id
+### parameters
+なし
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### response
+```
+{
+  "issue": {
+    "title": "Ruby help!",
+    "price": 1000,
+    "detail": "Rubyについてです。助けてください",
+    "repository_url": "https://github.com/takahashi/jobhub",
+    "issue_url": "https://github.com/takahashi/jobhub/issues/1",
+  },
+  "challenges": [
+    {
+      "status": "challenging",
+      "issue_id": 2,
+      "detail": "頑張りました",
+      "pull_request_url": "https://github.com/takahashi/test-repo/pull/2",
+    }
+  ]
+}
+```
