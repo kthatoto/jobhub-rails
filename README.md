@@ -78,10 +78,15 @@ Authorization: <access_token>
   },
   "challenges": [
     {
-      "status": "challenging",
-      "issue_id": 2,
       "detail": "頑張りました",
+      "status": "challenging",
       "pull_request_url": "https://github.com/takahashi/test-repo/pull/2",
+      "issue": {
+        id: 1,
+        title: "Rubyについてです、助けてください！",
+        owner_name: "takahashi",
+        cost: 100,
+      },
     },
     ...
   ],
@@ -104,19 +109,31 @@ Authorization: <access_token>
 ### response
 ```
 {
+  "is_my_issue": true,
+  "user": { //ログイン中のユーザー
+    "name": "takahashi",
+    "detail": "rubyを普段頑張ってます。...",
+  }
   "issue": {
     "title": "Ruby help!",
-    "price": 1000,
     "detail": "Rubyについてです。助けてください",
     "repository_url": "https://github.com/takahashi/jobhub",
     "issue_url": "https://github.com/takahashi/jobhub/issues/1",
+    "cost": 1000,
+    "user": { // issueの発注ユーザー
+      "name": "tanaka",
+      "detail": "perl頑張ってます、たまにrubyやります"
+    }
   },
   "challenges": [
     {
+      "detail": "頑張りました",
       "status": "challenging",
       "issue_id": 2,
-      "detail": "頑張りました",
-      "pull_request_url": "https://github.com/takahashi/test-repo/pull/2",
+      "user": {
+        "id": 1,
+        "name": "takahashi",
+      }
     }
   ]
 }

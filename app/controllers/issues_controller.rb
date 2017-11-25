@@ -12,10 +12,9 @@ class IssuesController < ApplicationController
     challenges = []
     issue.challenges.each do |challenge|
       challenges << {
-        title: challenge.title,
-        cost: challenge.cost,
         detail: challenge.detail,
         status: challenge.status,
+        issue_id: challenge.issue_id,
         user: {
           id: challenge.user_id,
           name: challenge.user.name,

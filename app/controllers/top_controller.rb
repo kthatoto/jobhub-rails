@@ -31,9 +31,12 @@ class TopController < ApplicationController
       challenges << {
         detail: challenge.detail,
         status: challenge.status,
+        pull_request_url: "https://github.com/#{challenge.issue.user.github_user_id}/#{challenge.issue.repository_name}/pull/#{challenge.pull_request_id}",
         issue: {
           id: challenge.issue.id,
+          title: challenge.issue.title,
           owner_name: challenge.issue.user.name,
+          cost: challenge.issue.cost,
         },
       }
     end
