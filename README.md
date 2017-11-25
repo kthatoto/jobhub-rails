@@ -49,7 +49,7 @@ Authorization: <access_token>
     {
       "id": 1,
       "title": "Ruby help!",
-      "price": 1000,
+      "cost": 1000,
       "user": {
         "id": 1,
         "name": "takahashi",

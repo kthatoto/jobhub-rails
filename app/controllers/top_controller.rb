@@ -5,9 +5,9 @@ class TopController < ApplicationController
     issues = []
     Issue.order("id desc").limit(10).each do |issue|
       issues << {
-        id: issues.id,
+        id: issue.id,
         title: issue.title,
-        price: issue.price,
+        cost: issue.cost,
         user: {
           id: issue.user_id,
           name: issue.user.name
