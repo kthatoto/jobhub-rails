@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'mypage', to: 'top#mypage'
 
   resources :users, only: [:create]
+  resources :issues, only: [:show, :create]
 end
