@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125172850) do
+ActiveRecord::Schema.define(version: 20171125185511) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20171125172850) do
     t.string "github_user_id"
     t.string "stripe_customer_id"
     t.text "detail"
+    t.string "access_token"
   end
 
 end
