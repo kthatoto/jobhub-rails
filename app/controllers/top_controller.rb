@@ -4,7 +4,6 @@ class TopController < ApplicationController
     render json: 1
   end
 
-  end
   def dashboard
     @issues = []
     Issue.order("id desc").limit(10).each do |issue|
