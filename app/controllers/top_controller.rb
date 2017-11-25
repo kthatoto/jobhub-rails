@@ -29,8 +29,7 @@ class TopController < ApplicationController
     challenges = []
     @user.challenges.order("id desc").limit(10).each do |challenge|
       challenges << {
-        title: challenge.title,
-        cost: challenge.cost,
+        detail: challenge.detail,
         status: challenge.status,
         issue: {
           id: challenge.issue.id,
@@ -45,7 +44,7 @@ class TopController < ApplicationController
         id: issue.id,
         title: issue.title,
         cost: issue.cost,
-        status: issue.is_opend ? "open" : "closed",
+        status: issue.is_opened ? "open" : "closed",
       }
     end
 
