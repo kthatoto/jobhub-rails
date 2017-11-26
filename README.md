@@ -24,7 +24,7 @@ Authorization: <access_token>
 ### parameters
 ```
 {
-  github_access_token: "asdfasdfasdf..."
+  code: "asdfasdfasdf..."
 }
 ```
 ### response
