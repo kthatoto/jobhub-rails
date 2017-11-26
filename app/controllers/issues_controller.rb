@@ -11,7 +11,12 @@ class IssuesController < ApplicationController
       require 'net/http'
       json = Net::HTTP.get(uri)
       json = JSON.parse(json)
-      pp json
+      json.each do |data|
+        pp data
+        puts '======================'
+        puts '======================'
+        puts '======================'
+      end
     end
 
     repository_url = "https://github.com/#{issue.user.github_user_id}/#{issue.repository_name}"

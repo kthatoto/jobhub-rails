@@ -14,6 +14,7 @@ Authorization: <access_token>
   "user": {
     "name": "takahashi",
     "detail": "自己紹介...",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/33979809?v=4",
   }
 }
 ```

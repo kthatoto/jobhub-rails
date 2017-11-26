@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     json = Net::HTTP.get(uri)
     json = JSON.parse(json)
     github_user_id = json['login']
+    github_avatar_url = json['avatar_url']
     if User.find_by(github_user_id: github_user_id)
       render json: {
         message: "already exist"
@@ -17,7 +18,8 @@ class UsersController < ApplicationController
       User.create(
         name: github_user_id,
         github_user_id: github_user_id,
-        access_token: access_token
+        access_token: access_token,
+        avatar_url: github_avatar_url,
       )
       render json: {
         message: "created",
