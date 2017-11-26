@@ -17,4 +17,4 @@ User.create(name: "uasbbkez", github_user_id: "uasbbkez", access_token: "jobhub2
 Issue.create(repository_name: "test1", github_issue_id: 1, detail: "テスト1", title: "problem1", cost: 100, user_id: 1, is_opened: true, skill: nil)
 Issue.create(repository_name: "test1", github_issue_id: 2, detail: "テスト2", title: "problem2", cost: 100, user_id: 1, is_opened: true, skill: nil)
 
-Challenge.create(issue_id: 1, user_id: 2, status: 0, detail: "", pull_request_id: 3)
+Challenge.create(issue_id: 1, user_id: 2, status: 0, detail: "")

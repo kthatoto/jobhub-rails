@@ -7,25 +7,35 @@ class IssuesController < ApplicationController
     issue = Issue.find(params[:id])
 
     require 'net/http'
-    if issue.is_opened
-      uri = URI.parse("https://api.github.com/repos/#{issue.user.github_user_id}/#{issue.repository_name}/issues?state=close")
-      json = Net::HTTP.get(uri)
-      json = JSON.parse(json)
-      json.each do |data|
-        if data["number"].to_i == issue.github_issue_id.to_i
-          if data["state"] == "closed"
-            issue.update(is_opened: false)
-          end
-        end
-      end
-    end
     uri = URI.parse("https://api.github.com/repos/#{issue.user.github_user_id}/#{issue.repository_name}/issues?state=close")
     json = Net::HTTP.get(uri)
     json = JSON.parse(json)
     json.each do |data|
-      puts '=================='
-      pp data
-      puts '=================='
+      if data["number"].to_i == issue.github_issue_id.to_i
+        if data["state"] == "closed"
+          issue.update(is_opened: false)
+        end
+      end
+      if data.has_key?("pull_request") && data["closed_at"]
+        pull_request_id = data["number"].to_i
+        if accepted_challenge = Challenge.find_by(pull_request_id: pull_request_id, status: 'judging')
+          accepted_challenge.accepted!
+        end
+      end
+      if data.has_key?("pull_request") && !data["closed_at"]
+        pull_request_id = data["number"].to_i
+        github_user_id = data["user"]["login"]
+        issue.challenges.each do |challenge|
+          puts '======================'
+          pp challenge.user.github_user_id
+          puts '~~~~~~~~~~~~~~~~~~~~~~~~'
+          pp github_user_id
+          puts '======================'
+          if challenge.user.github_user_id == github_user_id
+            challenge.update(status: 'judging', pull_request_id: pull_request_id)
+          end
+        end
+      end
     end
 
     repository_url = "https://github.com/#{issue.user.github_user_id}/#{issue.repository_name}"
