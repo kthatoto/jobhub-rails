@@ -6,6 +6,14 @@ class IssuesController < ApplicationController
   def show
     issue = Issue.find(params[:id])
 
+    if issue.is_opened
+      uri = URI.parse("https://api.github.com/repos/#{issue.user.github_user_id}/#{issue.repository_name}/issues?state=close")
+      require 'net/http'
+      json = Net::HTTP.get(uri)
+      json = JSON.parse(json)
+      pp json
+    end
+
     repository_url = "https://github.com/#{issue.user.github_user_id}/#{issue.repository_name}"
     issue_url = repository_url + "/issues/#{issue.github_issue_id}"
 
