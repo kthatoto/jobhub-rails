@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
 
   def create
+    @issue = Issue.new(issue_params)
   end
 
   def show
@@ -41,6 +42,11 @@ class IssuesController < ApplicationController
       },
       challenges: challenges,
     }
+  end
+
+  private
+  def issue_params
+    params.require(:issue).permit(:repository_name, :issue_id, :title, :detail, :cost)
   end
 
 end
