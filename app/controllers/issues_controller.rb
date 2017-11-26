@@ -12,10 +12,11 @@ class IssuesController < ApplicationController
       json = Net::HTTP.get(uri)
       json = JSON.parse(json)
       json.each do |data|
-        pp data
-        puts '======================'
-        puts '======================'
-        puts '======================'
+        if data["number"].to_i == issue.github_issue_id.to_i
+          if data["state"] == "closed"
+            issue.update(is_opened: false)
+          end
+        end
       end
     end
 

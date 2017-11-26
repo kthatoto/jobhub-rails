@@ -9,9 +9,10 @@ class UsersController < ApplicationController
     json = JSON.parse(json)
     github_user_id = json['login']
     github_avatar_url = json['avatar_url']
-    if User.find_by(github_user_id: github_user_id)
+    if user = User.find_by(github_user_id: github_user_id)
       render json: {
-        message: "already exist"
+        message: "already exist",
+        access_token: user.access_token,
       }
     else
       access_token = SecureRandom.urlsafe_base64
