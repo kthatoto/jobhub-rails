@@ -1,7 +1,14 @@
 # APIs
 
-## 共通
+## 諸々
 メソッドの指定がなければ`GET`
+
+Challengeのstatus
+```
+- challenging
+- judging
+- accepted
+```
 
 ユーザー登録以外のリクエストには、ヘッダーに
 ```
@@ -159,5 +166,23 @@ challengeにひもづくプルリクエストがマージされていたら、ch
 ```
 {
   message: "created"
+}
+```
+
+## /cards
+### method
+- post
+
+### parameters
+```
+{
+  "stripeToken": "tok_asdfasd..."
+}
+```
+
+### response
+```
+{
+  "message": "created"
 }
 ```

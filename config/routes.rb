@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :issues, only: [:show, :create]
   resources :challenges, only: [:create]
+  resources :cards, only: [:create]
 end
