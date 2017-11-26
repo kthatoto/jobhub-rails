@@ -54,6 +54,7 @@ class IssuesController < ApplicationController
       user: {
         name: @user.name,
         detail: @user.detail,
+        user: @user.avatar_url,
       },
       issue: {
         title: issue.title,

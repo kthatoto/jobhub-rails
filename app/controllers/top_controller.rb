@@ -16,7 +16,8 @@ class TopController < ApplicationController
     render json: {
       user: {
         name: @user.name,
-        detail: @user.detail
+        detail: @user.detail,
+        avatar_url: @user.avatar_url,
       },
       issues: issues,
       skills: Skill.pluck(:name)
@@ -53,7 +54,8 @@ class TopController < ApplicationController
     render json: {
       user: {
         name: @user.name,
-        detail: @user.detail
+        detail: @user.detail,
+        avatar_url: @user.avatar_url,
       },
       challenges: challenges,
       issues: issues,
