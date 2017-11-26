@@ -2,6 +2,14 @@ class IssuesController < ApplicationController
 
   def create
     @issue = Issue.new(issue_params)
+    if @issue.save
+      if user_signed_in?
+        @challengeing.user_id = current_user.id
+        @issue.save
+      end
+    else
+      render :new
+    end
   end
 
   def show
