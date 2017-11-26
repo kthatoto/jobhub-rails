@@ -134,7 +134,8 @@ Authorization: <access_token>
         "id": 1,
         "name": "takahashi",
       }
-    }
+    },
+    ...
   ]
 }
 ```
