@@ -104,6 +104,9 @@ Authorization: <access_token>
 ```
 
 ## /issues/:id
+github上でこのissueの元レポジトリにプルリクエストを作成している、かつ、jobhub上でこのissueにchallengeを作成している場合、プルリクエストとchallengeがひもづく
+
+challengeにひもづくプルリクエストがマージされていたら、challengeのstatusをacceptedに更新する
 ### parameters
 なし
 
@@ -138,5 +141,23 @@ Authorization: <access_token>
     },
     ...
   ]
+}
+```
+
+## /challenges
+### method
+- `post`
+
+### parameters
+```
+{
+  issue_id: 1
+}
+```
+
+### response
+```
+{
+  message: "created"
 }
 ```

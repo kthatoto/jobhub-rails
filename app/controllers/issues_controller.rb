@@ -26,11 +26,6 @@ class IssuesController < ApplicationController
         pull_request_id = data["number"].to_i
         github_user_id = data["user"]["login"]
         issue.challenges.each do |challenge|
-          puts '======================'
-          pp challenge.user.github_user_id
-          puts '~~~~~~~~~~~~~~~~~~~~~~~~'
-          pp github_user_id
-          puts '======================'
           if challenge.user.github_user_id == github_user_id
             challenge.update(status: 'judging', pull_request_id: pull_request_id)
           end
